@@ -1,34 +1,59 @@
-const enviarIA = async () => {
+datosChat
+// crear el auto 
+const enviarIA =  async() => {
+  // Intentar realizar el viaje
     try {
-        
-        const API_KEY = "gsk_xxxx..." 
-        const url = "https://api.groq.com/openai/v1/chat/completions"
+    
+    // Contenedor para guardar la peticion
+    const input = document.getElementById("mensaje")
+    
+    const chat = document.getElementById("chat")
+    // Eliminar los espacios al comienzo y al final
+    const texto = input.value.trim()
+    
+    // Si no hay texto no procesa
+    if (!texto) return
 
-        const request = await fetch(url, {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${API_KEY}`,
+    chat.innerHTML = `<p><b>Tú:</b> ${texto}</p>`
+
+    input.value = ""
+
+    
+  const url = "https://api.groq.com/openai/v1/chat/completions"
+
+    const req = await fetch(url,{
+        method: "POST",
+        headers: {
+                "Authorization": "Bearer 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",
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                model: "llama-3.3-70b-versatile", 
+        },
+        body: JSON.stringify({
+                model: "openai/gpt-oss-120b",
                 messages: [
                     {
                         role: "user",
-                        content: "Que es MCP"
+                        content: texto
                     }
                 ]
             })
-        })
+    })
 
-        const response = await request.json()
+    const res = await req.json()
 
+    console.log(res.choices[0].message.content)
+
+    const respuesta = res.choices[0].message.content
+
+    chat.innerHTML = `<p><b>IA:</b> ${respuesta}</p>`
+
+    chat.scrollTop = chat.scrollHeight
     
-        console.log(response.choices[0].message.content) 
-
+    // Si ocurre un problema durante el viaje, activar el plan de emergencia
     } catch (error) {
-        console.error("Error: ", error)
+        console.error("Error:", error)
     }
 }
 
+
+// Encender el auto y comenzar el viaje
 enviarIA()
