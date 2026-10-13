@@ -24,7 +24,7 @@ const enviarIA =  async() => {
     const req = await fetch(url,{
         method: "POST",
         headers: {
-                "Authorization": "Bearer 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",
+                "Authorization": "Bearer token aqui",
                 "Content-Type": "application/json"
         },
         body: JSON.stringify({
