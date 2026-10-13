@@ -1,4 +1,3 @@
-datosChat
 // crear el auto 
 const enviarIA =  async() => {
   // Intentar realizar el viaje
