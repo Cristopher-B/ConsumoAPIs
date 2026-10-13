@@ -19,7 +19,7 @@ const obtenerMemes = async () => {
         const plantilla = document.getElementById('meme')
 
         // Seleccionar los primeros 8 memes y procesarlos uno por uno
-        data.memes.slice(0, 8).forEach(meme => {
+        data.memes.slice(12, 20).forEach(meme => {
             // Hacer una copia de la tarjeta para cada meme
             const tarjeta = plantilla.cloneNode(true)
             // Colocar la imagen del meme en la tarjeta
